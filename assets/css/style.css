@@ -1123,3 +1123,12 @@ section {
         padding-right: 20px 15px;
     }
 }
+
+.rounded-circle {
+    border-radius: 50%!important;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
