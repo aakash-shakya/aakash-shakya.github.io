@@ -1,420 +1,484 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakash Shakya - AI Engineer & Entrepreneur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Background: #F5F5F4, Text: #292524, Accent: #0D9488) -->
+    <!-- Application Structure Plan: A single-page, top-down narrative portfolio. Structure: Hero, Nav, About, Key Metrics (interactive counters), Skills (interactive radar chart), Experience (interactive timeline), Projects, Education, and Contact. This structure transforms the linear resume into an engaging story, allowing users to quickly grasp key achievements via interactive visuals (counters, chart) and drill down into details (timeline) at their own pace. This improves scannability and engagement for recruiters. -->
+    <!-- Visualization & Content Choices: 1. Key Metrics -> Goal: Impress -> Viz: Animated Number Counters -> Interaction: Animate on scroll -> Justification: Draws attention to major quantitative achievements. Method: JS IntersectionObserver. 2. Core Competencies -> Goal: Compare/Organize -> Viz: Radar Chart -> Interaction: Hover tooltips -> Justification: Provides a quick, memorable visual summary of skill distribution. Library: Chart.js. 3. Professional Experience -> Goal: Show Change/Organize -> Viz: Vertical Timeline -> Interaction: Click to expand details -> Justification: Presents career progression cleanly, reducing initial information overload. Method: HTML/CSS/JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F4;
+            color: #292524;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 40vh;
+            max-height: 450px;
+            width: 100%;
+            max-width: 450px;
+        }
+        .nav-link.active {
+            color: #0D9488;
+            font-weight: 700;
+        }
+        .timeline-item-button.active {
+            border-color: #0D9488;
+            background-color: #ccfbf1;
+        }
+        .timeline-item-button.active h3 {
+             color: #0D9488;
+        }
+        .timeline-content {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
 
-  <title>Aakash Shakya</title>
-  <meta content="I am a web developer, data analyst and tech enthusiast." name="description">
-  <meta content="aakash, aakas, aakash shakya" name="keywords">
-  
-  <meta name="image" property="og:image" content="https://www.aakas.com.np/assets/img/aakash.jpg">
- 
-
-  <!-- Favicons -->
-  <link href="assets/img/aakas.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-16RPBRBKVV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-16RPBRBKVV');
-</script>
-
-  </head>
-
-<body>
-
-  <!-- ======= Mobile nav toggle button ======= -->
-  <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
-
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="d-flex flex-column">
-
-      <div class="profile">
-        <img src="assets/img/aakash.jpg" alt="" class="img-fluid">
-        <h1 class="text-light"><a href="index.html">Aakash Shakya</a></h1>
-        <div class="social-links mt-3 text-center">
-          <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
-          <a href="https://www.facebook.com/aakas.officialx" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="https://www.instagram.com/the.__aakas__/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
-          <a href="https://www.linkedin.com/in/aakash-shakya/" target="_blank"  class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://twitter.com/__aakas__" target="_blank"  class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="https://github.com/aakash-shakya" target="_blank"  class="github"><i class="bx bxl-github"></i></a>
+    <header id="header" class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-stone-800">
+                Aakash Shakya
+            </div>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="nav-link text-stone-600 hover:text-teal-600 transition-colors duration-300">About</a>
+                <a href="#skills" class="nav-link text-stone-600 hover:text-teal-600 transition-colors duration-300">Skills</a>
+                <a href="#experience" class="nav-link text-stone-600 hover:text-teal-600 transition-colors duration-300">Experience</a>
+                <a href="#projects" class="nav-link text-stone-600 hover:text-teal-600 transition-colors duration-300">Projects</a>
+                <a href="#contact" class="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700 transition-colors duration-300">Contact</a>
+            </div>
+            <div class="md:hidden">
+                 <button id="mobile-menu-button" class="text-stone-800 focus:outline-none">
+                    <span class="text-3xl">☰</span>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-100">
+            <a href="#about" class="block text-center py-2 px-4 text-stone-600 hover:bg-teal-50">About</a>
+            <a href="#skills" class="block text-center py-2 px-4 text-stone-600 hover:bg-teal-50">Skills</a>
+            <a href="#experience" class="block text-center py-2 px-4 text-stone-600 hover:bg-teal-50">Experience</a>
+            <a href="#projects" class="block text-center py-2 px-4 text-stone-600 hover:bg-teal-50">Projects</a>
+            <a href="#contact" class="block text-center py-2 px-4 text-stone-600 hover:bg-teal-50">Contact</a>
         </div>
-      </div>
+    </header>
 
-      <nav class="nav-menu">
-        <ul>
-          <li class="active"><a href="#hero"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#resume"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="#portfolio"><i class="bx bx-book-content"></i> Portfolio</a></li>
-          <li><a href="https://blog.aakas.com.np/"><i class="bx bx-server"></i> Blogs</a></li>
-          <li><a href="#contact"><i class="bx bx-envelope"></i> Contact</a></li>
+    <main class="container mx-auto px-6 py-8 md:py-16">
 
-        </ul>
-      </nav><!-- .nav-menu -->
-      <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
-
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="hero-container" data-aos="fade-in">
-      <h1>Aakash Shakya</h1>
-      <p>I'm <span class="typed" data-typed-items="CS student, Developer,Tech Ethusiast "></span></p>
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>About</h2>
-          
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/aakash.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>Web Developer, Data Analyst, Tech enthusiat</h3>
-            <p class="font-italic">
-            
+        <section id="hero" class="text-center min-h-[60vh] flex flex-col justify-center items-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-stone-800 mb-4">AI Engineer & Entrepreneur</h1>
+            <p class="text-lg md:text-xl text-stone-600 max-w-3xl mx-auto mb-8">
+                Building scalable, intelligent solutions that drive innovation and deliver measurable business impact.
             </p>
-
-            <h4>
-            <em>
-              I am a web developer, data analyst and tech enthusiast. I have been programming since 2 years ago. And i find it 
-              very interesting. The way you could solve problems using programming is wonderful. I am also currently Bachelor Level student, studying Computer Science and Information Technology.
-              And I hope to bring great positive changes to our Computer Technology and Society. 
-              </em>
-            </h4>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-    
-
-    <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Skills</h2>
-          <p></p>
-
-        <div class="row skills-content">
-
-          <div class="col-lg-6" data-aos="fade-up">
-
-            <div class="progress">
-              <span class="skill">HTML <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+            <div class="flex space-x-4">
+                <a href="#projects" class="bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-all duration-300 shadow-lg">View My Work</a>
+                <a href="#contact" class="bg-white text-teal-600 px-6 py-3 rounded-lg font-semibold hover:bg-stone-50 transition-all duration-300 border border-stone-200 shadow-lg">Get In Touch</a>
             </div>
+        </section>
 
-            <div class="progress">
-              <span class="skill">CSS <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+        <section id="about" class="py-16 md:py-24 scroll-mt-20">
+             <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-stone-800">About Me</h2>
+                <p class="text-lg text-stone-500 mt-2">A brief introduction to my professional journey.</p>
             </div>
-
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-3 text-lg text-stone-700 space-y-4 leading-relaxed">
+                    <p>
+                        As an AI Engineer and Entrepreneur with over two years of experience, I specialize in building scalable, intelligent solutions that deliver measurable business impact. I founded JiguPix, where I engineered an AI platform achieving 95% face-matching accuracy. By leveraging Python, LangChain, and AWS, I've reduced task completion times by 80% and enhanced data quality for over 10 million records. I am driven by the challenge of transforming complex problems into innovative, production-ready systems.
+                    </p>
+                </div>
+                 <div id="impact-metrics" class="md:col-span-2 bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                    <h3 class="text-2xl font-bold text-stone-800 mb-6 text-center">Career Impact Highlights</h3>
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <p class="metric-number text-4xl font-extrabold text-teal-600" data-target="80">0%</p>
+                            <p class="text-stone-600">Reduction in Task Time</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="metric-number text-4xl font-extrabold text-teal-600" data-target="95">0%</p>
+                            <p class="text-stone-600">Face-Matching Accuracy</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="metric-number text-4xl font-extrabold text-teal-600" data-target="10">0M+</p>
+                            <p class="text-stone-600">Records Processed</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="progress">
-              <span class="skill">Python & Django <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+        <section id="skills" class="py-16 md:py-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-stone-800">Technical Skillset</h2>
+                <p class="text-lg text-stone-500 mt-2">A visual representation of my core competencies and a list of my technical skills.</p>
             </div>
-
-            <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-stone-800 mb-4 text-center">Core Competencies</h3>
+                    <div class="chart-container">
+                        <canvas id="skillsRadarChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                     <h3 class="text-2xl font-bold text-stone-800 mb-6 text-center">Technologies & Tools</h3>
+                     <div id="tech-skills-container" class="flex flex-wrap justify-center gap-3">
+                     </div>
+                </div>
             </div>
+        </section>
 
-            <div class="progress">
-              <span class="skill">Data analysis <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+        <section id="experience" class="py-16 md:py-24 scroll-mt-20">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-stone-800">Professional Experience</h2>
+                <p class="text-lg text-stone-500 mt-2">A timeline of my career, highlighting key roles and accomplishments.</p>
             </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Skills Section -->
-
-    <!-- ======= Resume Section ======= -->
-    <section id="resume" class="resume">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Resume</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title">Personal Details</h3>
-            <div class="resume-item pb-0">
-              <h4>Aakash Shakya</h4>
-              <p><em>Innovative web developer with 2+ years of experience of developing user-centered web apps from initial concept to final, polished deliverable.</em></p>
-              <ul>
-                <li>Lubhu, Lalitpur</li>
-                <li>Nepal</li>
-                <li>+977 9861887935</li>
-                <li>official.aakas@gmail.com</li>
-              </ul>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-1 flex flex-col space-y-2">
+                </div>
+                <div id="experience-details" class="md:col-span-2 bg-white p-8 rounded-2xl shadow-lg border border-stone-200 min-h-[300px]">
+                </div>
             </div>
+        </section>
 
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Bachelor in Computer Science and information Technology</h4>
-              <h5>2018 - 2023</h5>
-              <p><em>St. Xavier's College, Maitighar, Kathmandu, Nepal</em></p>
+        <section id="projects" class="py-16 md:py-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-stone-800">Key Project</h2>
+                 <p class="text-lg text-stone-500 mt-2">A showcase of a project that demonstrates my capabilities.</p>
             </div>
-            <div class="resume-item">
-              <h4>Higher Secondary Education</h4>
-              <h5>2014 - 2016</h5>
-              <p><em>Caribbean College, Kumaripati, Lalitpur, Nepal</em></p>
+            <div id="project-container" class="bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden">
             </div>
-            <div class="resume-item">
-              <h4>Python Django Training</h4>
-              <h5>2018</h5>
-              <p><em>Creators Institute of Business and Technology (CIBT), Kumaripati, Lalitpur, Nepal</em></p>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Founder at TechiNepal</h4>
-              <h5>2020 jun - Present</h5>
-              <p><em> <a href = "https://www.techinepal.com">www.techinepal.com</a></em></p>
-              <ul>
-                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Founder & Developer at bikeunleash.com</h4>
-              <h5>2020 Aug - Present</h5>
-              <p><em> <a href = "https://www.bikeunleash.com">www.bikeunleash.com</a></em></p>
-              <ul>
-                <li>Startup During Covid-19 Lockdown</li>
-                <li>Lead in the design, development, and implementation of the graphic, layout, and production Software</li>
-                <li>Supervise the Software in order to ensure quality and accuracy.</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Python-Django specialist</h4>
-              <h5>2018- present</h5>
-              <ul>
-                <li>Created 4+ social and educational projects during Hackathons</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                <li>Mentor a python-django class</li>
-                
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Resume Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Portfolio</h2>
-        </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-12 d-flex justify-content-center">
-           <!-- <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul> -->
-          </div>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <a href = 'https://nabileda.streamlit.app/'><img src="assets/img/Screenshot 2023-01-31 213153.jpg" class="img-fluid" alt=""></a>
-              <div class="portfolio-links">
-                <a href="https://nabileda.streamlit.app/" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <a href = 'https://diabetes-detection.streamlit.app/'><img src="assets/img/Screenshot 2023-01-31 214202.jpg" class="img-fluid" alt=""></a>
-              <div class="portfolio-links">
-                <a href="https://diabetes-detection.streamlit.app/" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <a href = "https://github.com/aakash-shakya"><img src="https://miro.medium.com/max/2560/1*SSRjtoQ0H2X3SBPOiJ5rZw.jpeg" class="img-fluid" alt=""></a>
-              <div class="portfolio-links">
-                <a href="https://github.com/aakash-shakya" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          
-        </div>
-
-      </div>
-    </section><!-- End Portfolio Section -->
-
-   
-<!--     <section id="blogs" class="services"> -->
-<!--       <div class="container">
-
-        <div class="section-title">
-          <h2>Blogs</h2>
-            <div id="retainable-rss-embed" data-rss="https://aakas.medium.com/feed/"
-            data-maxcols="3" 
-            data-layout="grid" 
-            data-poststyle="inline" 
-            data-readmore="Read more" 
-            data-buttonclass="btn btn-primary" 
-            data-offset="-100">
-      
+        </section>
         
-    </section>  -->
+        <section id="education" class="py-16 md:py-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-stone-800">Education & Certifications</h2>
+                <p class="text-lg text-stone-500 mt-2">My academic background and professional credentials.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                    <h3 class="text-2xl font-bold text-stone-800 mb-4">Education</h3>
+                    <p class="text-lg font-semibold text-teal-700">Bachelor of Science in CSIT</p>
+                    <p class="text-stone-600">St. Xavier's College, Kathmandu, Nepal</p>
+                    <p class="text-stone-500 text-sm">2018 – 2023</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                    <h3 class="text-2xl font-bold text-stone-800 mb-4">Certifications</h3>
+                    <ul id="certifications-list" class="space-y-2 list-inside">
+                    </ul>
+                </div>
+            </div>
+        </section>
 
+    </main>
     
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Contact</h2>
+    <footer id="contact" class="bg-stone-800 text-stone-200 scroll-mt-20">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Let's Connect</h2>
+            <p class="text-stone-300 max-w-xl mx-auto mb-8">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out.</p>
+            <div class="flex justify-center items-center space-x-6 text-lg">
+                <a href="mailto:official.aakas@gmail.com" class="hover:text-teal-400 transition-colors">official.aakas@gmail.com</a>
+                <span>&bull;</span>
+                <a href="https://www.google.com/search?q=https://www.linkedin.com/in/aakash-shakya" target="_blank" class="hover:text-teal-400 transition-colors">LinkedIn</a>
+                 <span>&bull;</span>
+                <a href="https://github.com/aakash-shakya" target="_blank" class="hover:text-teal-400 transition-colors">GitHub</a>
+            </div>
+            <div class="mt-10 text-stone-400 text-sm">
+                <p>&copy; 2025 Aakash Shakya. All Rights Reserved.</p>
+            </div>
         </div>
+    </footer>
 
-        <div class="row" data-aos="fade-in">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const techSkillsData = [
+                { category: 'AI & Machine Learning', skill: 'LangChain' },
+                { category: 'AI & Machine Learning', skill: 'Google ADK' },
+                { category: 'AI & Machine Learning', skill: 'Face Recognition' },
+                { category: 'AI & Machine Learning', skill: 'Scikit-learn' },
+                { category: 'AI & Machine Learning', skill: 'TensorFlow' },
+                { category: 'Data Engineering', skill: 'PySpark' },
+                { category: 'Data Engineering', skill: 'ETL Pipelines' },
+                { category: 'Data Engineering', skill: 'Data Warehousing' },
+                { category: 'Cloud Platforms', skill: 'AWS Lambda' },
+                { category: 'Cloud Platforms', skill: 'AWS S3' },
+                { category: 'Cloud Platforms', skill: 'AWS EC2' },
+                { category: 'Cloud Platforms', skill: 'Azure Data Factory' },
+                { category: 'Backend & API Development', skill: 'Python' },
+                { category: 'Backend & API Development', skill: 'Django' },
+                { category: 'Backend & API Development', skill: 'Django Rest Framework' },
+                { category: 'Backend & API Development', skill: 'Celery' },
+                { category: 'Databases', skill: 'PostgreSQL' },
+                { category: 'Databases', skill: 'MySQL' },
+                { category: 'Databases', skill: 'SQL' },
+                { category: 'DevOps & Tools', skill: 'Docker' },
+                { category: 'DevOps & Tools', skill: 'Jenkins' },
+                { category: 'DevOps & Tools', skill: 'CI/CD' },
+                { category: 'DevOps & Tools', skill: 'Git' },
+                { category: 'DevOps & Tools', skill: 'GitHub Actions' },
+                { category: 'DevOps & Tools', skill: 'Linux' }
+            ];
 
-          <div class="col-lg-5 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="icofont-google-map"></i>
-                <h4>Location:</h4>
-                <p>Lubhu, Lalitpur, Nepal</p>
-              </div>
+            const experienceData = [
+                {
+                    id: 'jigupix',
+                    company: 'JiguPix',
+                    role: 'Founder & Chief Technology Officer',
+                    period: 'Oct 2024 – Present',
+                    location: 'Remote',
+                    details: [
+                        'Founded and engineered a scalable photo distribution platform, integrating advanced face recognition with AWS Lambda to achieve 95% matching accuracy.',
+                        'Architected and deployed secure, high-performance RESTful APIs using Django Rest Framework for robust data exchange.',
+                        'Led front-end design using React and Tailwind CSS, creating a user-centric interface that reduced weekly operational overhead by 15 hours.'
+                    ]
+                },
+                {
+                    id: 'varicon',
+                    company: 'Varicon Pvt. Ltd.',
+                    role: 'AI/Backend Developer',
+                    period: 'Feb 2025 – Present',
+                    location: 'Lalitpur, Nepal',
+                    details: [
+                        'Developed "Varicon Copilot," an AI-powered suite, utilizing LangChain and AWS Lambda, resulting in an 80% reduction in task completion times.',
+                        'Engineered context-aware AI features, including automated tag generation and a Form Builder Agent using Google ADK.',
+                        'Maintained high standards of code quality by leveraging Git, CI/CD pipelines, and collaborating with product and QA teams.'
+                    ]
+                },
+                {
+                    id: 'codehimalaya',
+                    company: 'Code Himalaya Pvt. Ltd.',
+                    role: 'Python Developer',
+                    period: 'Jun 2023 – Jul 2024',
+                    location: 'Lalitpur, Nepal',
+                    details: [
+                        'Constructed scalable ETL pipelines with PySpark, processing datasets with millions of rows and cutting data processing time for analytics by 30%.',
+                        'Designed RESTful APIs using Django, which enhanced third-party integrations and overall user experience.',
+                        'Automated business workflows using Celery, saving cross-functional teams more than 10 hours of manual effort per week.'
+                    ]
+                },
+                {
+                    id: 'triumph',
+                    company: 'Triumph Technology',
+                    role: 'Python Developer',
+                    period: 'Nov 2021 – Nov 2022',
+                    location: 'Remote',
+                    details: [
+                        'Developed a secure PDF invoicing system and REST APIs with Django, leading to improved efficiency in inventory management.',
+                        'Mentored and led a small team of junior developers, ensuring the timely delivery of high-quality software solutions.'
+                    ]
+                }
+            ];
 
-              <div class="email">
-                <i class="icofont-envelope"></i>
-                <h4>Email:</h4>
-                <p>official.aakas@gmail.com</p>
-              </div>
+            const projectData = {
+                title: 'Customer Master Data Management',
+                technologies: ['Azure Data Factory', 'PySpark', 'Python'],
+                description: [
+                    'Architected and implemented cloud-native ETL pipelines on Azure, processing over 10 million customer records to enhance data quality by 20% for enterprise-wide analytics.',
+                    'Optimized data ingestion, cleansing, and transformation processes, which provided a reliable data source for critical business intelligence and reporting functions.'
+                ]
+            };
 
-              <div class="phone">
-                <i class="icofont-phone"></i>
-                <h4>Call:</h4>
-                <p>+977 9861887935</p>
-              </div>
-            </div>
+            const certificationsData = [
+                { name: 'AWS Machine Learning Foundations', provider: 'Udacity' },
+                { name: 'Introduction to Data Science in Python', provider: 'DataCamp' },
+                { name: 'Intro to Machine Learning', provider: 'Kaggle' },
+                { name: 'Pandas', provider: 'Kaggle' },
+                { name: 'Back-End Engineering Virtual Experience', provider: 'Forage' }
+            ];
 
-          </div>
-
-          
-            </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
 
 
-<script src="https://www.twilik.com/assets/retainable/rss-embed/retainable-rss-embed.js"></script> 
-  
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6539dd50a84dd54dc48547bf/1hdl0h1i4';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
 
+            const animateCounters = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counters = entry.target.querySelectorAll('.metric-number');
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            const suffix = counter.innerText.replace(/[0-9]/g, '');
+                            counter.innerText = '0' + suffix;
+                            const duration = 1500;
+                            const stepTime = Math.abs(Math.floor(duration / target));
+
+                            let current = 0;
+                            const timer = setInterval(() => {
+                                current += 1;
+                                counter.innerText = current + suffix;
+                                if (current === target) {
+                                    clearInterval(timer);
+                                }
+                            }, stepTime);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            const counterObserver = new IntersectionObserver(animateCounters, observerOptions);
+            const metricsSection = document.getElementById('impact-metrics');
+            if(metricsSection) {
+                counterObserver.observe(metricsSection);
+            }
+
+            const ctx = document.getElementById('skillsRadarChart')?.getContext('2d');
+            if (ctx) {
+                const skillsChart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['AI & ML', 'Data Engineering', 'Cloud Platforms', 'Backend & APIs', 'DevOps'],
+                        datasets: [{
+                            label: 'Competency Level',
+                            data: [9, 8, 8, 9, 7],
+                            backgroundColor: 'rgba(13, 148, 136, 0.2)',
+                            borderColor: 'rgba(13, 148, 136, 1)',
+                            pointBackgroundColor: 'rgba(13, 148, 136, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(13, 148, 136, 1)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                angleLines: { color: '#d6d3d1' },
+                                grid: { color: '#e7e5e4' },
+                                pointLabels: { font: { size: 12 }, color: '#57534e' },
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    color: '#78716c',
+                                    stepSize: 2
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 10
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            const techSkillsContainer = document.getElementById('tech-skills-container');
+            if (techSkillsContainer) {
+                techSkillsData.forEach(skill => {
+                    const skillTag = document.createElement('span');
+                    skillTag.className = 'bg-teal-50 text-teal-700 px-3 py-1 rounded-full text-sm font-medium';
+                    skillTag.textContent = skill.skill;
+                    techSkillsContainer.appendChild(skillTag);
+                });
+            }
+            
+            const timelineContainer = document.querySelector('#experience .md\\:col-span-1');
+            const detailsContainer = document.getElementById('experience-details');
+
+            if (timelineContainer && detailsContainer) {
+                experienceData.forEach((job, index) => {
+                    const button = document.createElement('button');
+                    button.className = 'timeline-item-button text-left p-4 rounded-lg border-2 border-stone-200 hover:border-teal-500 hover:bg-stone-50 transition-all duration-300 w-full';
+                    button.dataset.id = job.id;
+                    button.innerHTML = `
+                        <h3 class="text-lg font-bold text-stone-700">${job.role}</h3>
+                        <p class="text-stone-600">${job.company}</p>
+                        <p class="text-sm text-stone-500 mt-1">${job.period}</p>
+                    `;
+                    timelineContainer.appendChild(button);
+
+                    button.addEventListener('click', () => {
+                        displayExperience(job.id);
+                        document.querySelectorAll('.timeline-item-button').forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                    });
+
+                    if (index === 0) {
+                        displayExperience(job.id);
+                        button.classList.add('active');
+                    }
+                });
+            }
+
+            function displayExperience(id) {
+                const job = experienceData.find(j => j.id === id);
+                if (!job || !detailsContainer) return;
+
+                detailsContainer.innerHTML = `
+                    <div class="timeline-content">
+                        <h3 class="text-2xl font-bold text-stone-800">${job.role}</h3>
+                        <p class="text-lg font-semibold text-teal-700 mb-1">${job.company} | ${job.location}</p>
+                        <p class="text-sm text-stone-500 mb-6">${job.period}</p>
+                        <ul class="space-y-3 list-disc list-inside text-stone-700">
+                            ${job.details.map(d => `<li>${d}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            const projectContainer = document.getElementById('project-container');
+            if (projectContainer) {
+                projectContainer.innerHTML = `
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-stone-800 mb-2">${projectData.title}</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${projectData.technologies.map(tech => `<span class="bg-stone-100 text-stone-700 px-3 py-1 rounded-full text-xs font-semibold">${tech}</span>`).join('')}
+                        </div>
+                        <div class="text-stone-700 space-y-3">
+                             ${projectData.description.map(p => `<p>${p}</p>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            const certificationsList = document.getElementById('certifications-list');
+            if (certificationsList) {
+                certificationsData.forEach(cert => {
+                    const li = document.createElement('li');
+                    li.className = "text-stone-700";
+                    li.innerHTML = `<span class="font-semibold text-teal-800">✔</span> ${cert.name} - <span class="text-stone-500 italic">${cert.provider}</span>`;
+                    certificationsList.appendChild(li);
+                });
+            }
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+
+            sections.forEach(section => {
+                if (section.id) navObserver.observe(section);
+            });
+        });
+    </script>
 </body>
-
 </html>
+
